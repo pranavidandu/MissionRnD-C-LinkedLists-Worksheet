@@ -19,5 +19,20 @@ struct node {
 };
 
 struct node * removeEveryKthNode(struct node *head, int K) {
-	return NULL;
+	if (head == NULL || K <= 1)
+		return NULL;
+	struct node *ptr = head;//creating a temporary pointer
+	int temp = K;//Storing the K value in a temporary variable
+	while (ptr->next != NULL){
+		if (ptr->next->num == K){
+			if (ptr->next->next == NULL){//if end of the list
+				ptr->next = NULL;
+				break;
+			}
+			ptr->next = ptr->next->next;
+			K += temp;
+		}
+		ptr = ptr->next;
+	}
+	return head;
 }
